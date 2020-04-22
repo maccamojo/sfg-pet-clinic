@@ -7,8 +7,8 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
+//import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
+//import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
 
 /**
  * @author matt.mcfarlane
@@ -25,11 +25,18 @@ public class DataLoader implements CommandLineRunner {
 	private final OwnerService ownerService;
 	private final VetService vetService;	
 
+	public DataLoader(OwnerService ownerService, VetService vetService) {   // Constructor Injection
+		this.ownerService = ownerService;
+		this.vetService = vetService;
+	}
+
+/*	//No longer required, as we're now doing Constructor Injection
 	public DataLoader() {
 		ownerService = new OwnerServiceMap();
 		vetService = new VetServiceMap();
 	}
-
+*/
+	
 	@Override
 	public void run(String... args) throws Exception {
 		

@@ -47,6 +47,9 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	
 	private Long getNextId() {
 		
+/**
+ * 		John's refactored code
+ 
 		Long nextId = null;
 		
 		try {
@@ -55,6 +58,17 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 			nextId = 1L;
 		}
 		return nextId;
+*/
+		
+		// better refactored code -- Comment..  "Good suggestion. Defensive coding is always better then try/catch"
+/**
+ 		if (map.isEmpty())
+	        return 1L;
+	    else
+	        return Collections.max(map.keySet()) + 1;
+*/	
+		// and another refactor
+		return map.size() > 0 ? Collections.max(map.keySet()) + 1 : 1;
+		
 	}
-	
 }

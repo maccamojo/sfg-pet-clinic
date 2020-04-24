@@ -23,8 +23,11 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	}
 	
 	T save(T object) {
-		
-		if (object != null) {
+	
+/**
+ * 		John's refactor
+ * 
+ 		if (object != null) {
 			if (object.getId() == null) {
 				object.setId(getNextId());
 			}
@@ -35,6 +38,22 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 		}
 		
 		return object;
+*/
+		
+		// better refactor, with a "guarding clause"
+        // guarding clause
+        if (object == null) {
+            throw new RuntimeException("Object cannot be null");
+        }
+ 
+        // update id
+        if (object.getId() == null) {
+            object.setId(getNextId());
+        }
+        map.put(object.getId(), object);
+ 
+        return object;
+		
 	}
 	
 	void deleteById(ID id) {

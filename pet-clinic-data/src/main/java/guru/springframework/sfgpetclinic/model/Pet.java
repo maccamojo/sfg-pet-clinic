@@ -2,11 +2,28 @@ package guru.springframework.sfgpetclinic.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity {
 
+	@Column(name = "name")
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "type_id")   // tells JPA how to do the mapping. We expect to have an "type_id" column in the "pets" table.
 	private PetType petType;
+	
+	@ManyToOne
+	@JoinColumn(name = "owner_id")   // tells JPA how to do the mapping. We expect to have an "owner_id" column in the "pets" table. 
 	private Owner owner;
+	
+	@Column(name = "birth_date")
 	private LocalDate birthDate;
 
 	public String getName() {

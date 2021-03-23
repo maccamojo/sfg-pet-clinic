@@ -15,6 +15,8 @@
 	<name>pet-clinic-data</name>
 	<url>http://maven.apache.org</url>
 
+	<!-- Telling the Spring Boot Maven Plugin to not repackage this jar. Packaged as a normal jar  
+		 https://github.com/springframeworkguru/spring5webapp/wiki    -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>

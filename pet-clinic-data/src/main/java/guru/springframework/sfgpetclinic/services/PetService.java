@@ -4,7 +4,7 @@ import guru.springframework.sfgpetclinic.model.Pet;
 
 public interface PetService extends CrudService<Pet, Long> {
 	
-	//Pet findById(Long id);
+	//Pet findById(Long id);   // now declared in my CrudService interface
 	
 	//Pet save(Pet pet);
 	

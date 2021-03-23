@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Vet extends Person {
 
-	private Set<Speciality> specialities = new HashSet<>();   // initialise here to avoid a NullPointerException in T=the DataLoader (Best Practice)
+	private Set<Speciality> specialities = new HashSet<>();   // initialise here to avoid a NullPointerException in the DataLoader (Best Practice)
 
 	public Set<Speciality> getSpecialities() {
 		return specialities;

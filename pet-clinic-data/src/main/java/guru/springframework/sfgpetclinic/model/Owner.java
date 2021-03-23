@@ -8,7 +8,7 @@ public class Owner extends Person {
 	private String address;
 	private String city;
 	private String telephone;
-	private Set<Pet> pets = new HashSet<>();   // initialise here to avoid a NullPointerException in T=the DataLoader (Best Practice)
+	private Set<Pet> pets = new HashSet<>();   // initialise here to avoid a NullPointerException in the DataLoader (Best Practice)
 	
 	public String getAddress() {
 		return address;

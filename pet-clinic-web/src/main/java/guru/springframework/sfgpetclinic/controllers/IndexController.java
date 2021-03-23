@@ -8,7 +8,7 @@ public class IndexController {
 
 	@RequestMapping({"", "/", "index", "index.html"})
 	public String index() {
-		return "index";
+		return "index";    // Thymeleaf is going to look in the "templates" folder for a template called 'index'
 	}
 	
 	@RequestMapping("/oups")

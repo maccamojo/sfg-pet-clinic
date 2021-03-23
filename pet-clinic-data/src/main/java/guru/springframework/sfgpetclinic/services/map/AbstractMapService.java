@@ -9,7 +9,17 @@ import java.util.Set;
 
 import guru.springframework.sfgpetclinic.model.BaseEntity;
 
-public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {  // anytime we extend out this class as long as a Long (or anything that extends a Long) is specified
+/**
+ * 
+ * @author matt.mcfarlane
+ *
+ * @param <T extends BaseEntity>   -->  our Type coming in has to extend BaseEntity
+ * @param <ID extends Long>		   -->  our ID coming in has to extend Long
+ * 
+ * This is our base MapService that we can implement
+ * 
+ */
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {  // any time we extend out this class as long as a Long (or anything that extends a Long) is specified
 
 	//protected Map<ID, T> map = new HashMap<>();
 	protected Map<Long, T> map = new HashMap<>();
@@ -41,7 +51,6 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 */
 		
 		// better refactor, with a "guarding clause"
-        // guarding clause
         if (object == null) {
             throw new RuntimeException("Object cannot be null");
         }
@@ -67,7 +76,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	private Long getNextId() {
 		
 /**
- * 		John's refactored code
+ * 		//John's refactored code
  
 		Long nextId = null;
 		

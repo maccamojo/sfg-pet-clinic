@@ -2,6 +2,7 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -27,13 +28,22 @@ import guru.springframework.sfgpetclinic.services.VetService;
 @Component
 public class DataLoader implements CommandLineRunner {
 	
-	// we're implementing these 2 services.
-	// in the future, we'll leverage Spring to do this config for us
 	private final OwnerService ownerService;
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialtyService specialtyService;
 
+	/**
+	 * Spring is injecting my "Map" implementations here, as it's the only implementation available in the Application Context.
+	 * 
+	 * In the future, when we have "JPA" implementations, we'll utilise Spring Profiles to select the appropriate implementation.
+	 * 
+	 * @param ownerService
+	 * @param vetService
+	 * @param petTypeService
+	 * @param specialtyService
+	 */
+	@Autowired   // now longer required to explicitly use this annotation
 	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {   // Constructor Injection
 		this.specialtyService = specialtyService;
 		this.petTypeService = petTypeService;
@@ -53,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
 		
 		int count = petTypeService.findAll().size();
 		
-		if (count == 0) {
+		if (count == 0) {   // in the future, when we're persisting to a database, we don't want to reload data each time the app starts up
 			loadData();
 		}
 	}
@@ -69,7 +79,7 @@ public class DataLoader implements CommandLineRunner {
 		
 		Speciality radiology = new Speciality();
 		radiology.setDescription("Radiology");
-		Speciality savedRadiology = specialtyService.save(radiology);
+		Speciality savedRadiology = specialtyService.save(radiology); // we're persisting to our Map in order to get an Id value
 				
 		Speciality surgery = new Speciality();
 		surgery.setDescription("Surgery");

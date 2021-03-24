@@ -1,11 +1,15 @@
 package guru.springframework.sfgpetclinic.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +20,7 @@ public class Pet extends BaseEntity {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name = "type_id")   // tells JPA how to do the mapping. We expect to have an "type_id" column in the "pets" table.
+	@JoinColumn(name = "type_id")   // tells JPA how to do the mapping. We expect to have a "type_id" column in the "pets" table.
 	private PetType petType;
 	
 	@ManyToOne
@@ -25,6 +29,9 @@ public class Pet extends BaseEntity {
 	
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+	private Set<Visit> visits = new HashSet<>();  // initialise so it will never be null
 
 	public String getName() {
 		return name;

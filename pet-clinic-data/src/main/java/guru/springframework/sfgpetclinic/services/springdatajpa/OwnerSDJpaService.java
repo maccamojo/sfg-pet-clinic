@@ -57,6 +57,7 @@ public class OwnerSDJpaService implements OwnerService {
 //		} else {
 //			return null;
 //		}
+		
 		return optionalOwner.orElse(null);
 */
 		return ownerRepository.findById(id).orElse(null);   // refactored once more, and ended up with a single line of code!!
